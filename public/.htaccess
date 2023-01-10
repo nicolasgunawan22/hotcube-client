@@ -1,0 +1,8 @@
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://hotcube.my.id [R,L]
+RewriteCond %{HTTP_HOST} www.hotcube.my.id
+RewriteRule (.*) https://hotcube.my.id [R=301,L]

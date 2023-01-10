@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css");
+
+body {
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  font-family: 'Rubik', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+@media (max-width: 415px){
+  .container {
+    max-width: 370px;
+  }
+}
+
+@media (max-width: 320px){
+  .container {
+    max-width: 310px;
+  }
+}
+
+
+a:hover {
+  color: transparent;
+  text-decoration: none;
+}
+
+#login-form {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  padding: 10px;
+}
+
+.bmd-drawer-in .bmd-layout-drawer{
+  min-height: 40%;
+}
+
+.custom-btn {
+  background-color: #365AAD !important;
+  color: white !important;
+  width: 100%;
+}
+
+.sign-in-btn {
+  width: 100%;
+}
+
+.sticky{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navigation{
+  background-color: black;
+  z-index: 5;
+}
+
+.navigation a{
+  color: white !important;
+}
+
+.dropdown-menu .dropdown-item{
+  color: black !important;
+}
+
+.navbar-light .navbar-brand, .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover{
+  color: white;
+  font-weight: bold;
+}
+
+.dropdown-menu {
+    min-width: 0 !important;
+    padding: 0;
+}
+
+.dropdown-menu .dropdown-item{
+    min-width: 6rem !important;
+}
+
+.jumbotron{
+  color: white;
+  height: 250px;
+}
+
+.header-img{
+  object-fit: cover;
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  filter: brightness(50%);
+}
+
+.header-text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 5rem 2rem;
+}
+
+.menu-title{
+  display: flex;
+  justify-content: center;
+}
+
+.menu-card{
+  display: flex;
+  text-align: center;
+  font-size: 12px;
+}
+
+.card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout{
+   float: right;
+}
+
+.footer{
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer a{
+   color: white;
+   display: flex;
+   justify-content: center;
+   margin: 10px 0;
+   padding: 0;
+}
+
+.footer .container{
+  width: 50%;
+}
+
+.margin {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.card-text{
+  margin: 0 0 0.25rem 0;
+}
+
+#menu-title{
+  margin: 0 0 0.25rem 0;
+}
+
+.badge{
+    transform: scale(1) translate(50%, -50%);
+    transform-origin: 100% 0%;
+    padding: 0;
+}
+
+.form-btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-root{
+  margin: 2rem 0;
+  text-align: center;
+  font-size: larger;
+}
+
+/* .table thead th{
+  background-color: #F40009;
+  color: white;
+  font-weight: bold;
+} */
