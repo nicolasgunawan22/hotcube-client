@@ -20,11 +20,9 @@ function sendMail(cart, userEmail) {
 
    const handleSendMail = async (emailContent) => {
       try {
-         console.log(emailContent)
          await sendEmail(emailContent);
-         console.log("Mail sent")
       } catch (error) {
-         console.log(error.message)
+         console.warn(error.message)
       }
    }
    handleSendMail(emailContent)

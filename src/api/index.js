@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-// dont forget to change the url, when already deployed on server
-// const API = axios.create({ baseURL: "http://localhost:5000" })
-const API = axios.create({ baseURL: "https://hotcube-api.herokuapp.com/" })
+const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL })
 
 export const getCart = (email) => API.get(`/users/${email}`);
 export const postCartItem = (email, newCart) => API.post(`/users/${email}`, newCart);
@@ -25,9 +23,3 @@ export const deleteEspData = (_id) => API.delete(`/data-for-esp/${_id}`);
 export const updateEspData = (_id, updatedData) => API.patch(`/data-for-esp/${_id}`, updatedData)
 
 export const sendEmail = (emailContent) => API.post('/mail', emailContent);
-
-
-/* export const getCart = () => API.get('/cart');
-export const postCartItem = (newCart) => API.post('/cart', newCart);
-export const updateCartItem = (itemId, updatedCart) => API.patch(`/cart/${itemId}`, updatedCart);
-export const deleteCartItem = (_id) => API.delete(`/cart/${_id}`); */

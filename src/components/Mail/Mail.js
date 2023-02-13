@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,7 +18,7 @@ function Mail() {
       setEmailContent({
          'toEmail': userEmail,
          'subject': "HotCube E-Receipt",
-         'htmlFile': `${renderToStaticMarkup(<MailTemplate userName={userName} total={total} date={Date(Date.now()).toString()} cart={cart}/>)}`
+         'htmlFile': `${renderToStaticMarkup(<MailTemplate userName={userName} total={total} date={Date(Date.now()).toString()} cart={cart} />)}`
       })
       dispatch(getCart(userEmail))
    }, [dispatch, location, cart, userName, userEmail, total])
@@ -32,17 +32,14 @@ function Mail() {
    const userName = profile?.result.name;
    const userEmail = profile?.result.email;
 
-   const [ emailContent, setEmailContent ] = useState({})
-   // console.log(cart)
+   const [emailContent, setEmailContent] = useState({})
 
    const handleSendMail = async (emailContent) => {
-      
+
       try {
-         console.log(emailContent)
          await sendEmail(emailContent);
-         console.log("Mail sent")
       } catch (error) {
-         console.log(error.message)
+         console.warn(error.message)
       }
    }
 

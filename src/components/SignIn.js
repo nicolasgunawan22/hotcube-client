@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GoogleLogin } from 'react-google-login'
 import { useHistory } from 'react-router-dom'
 
-import {signIn, signUp} from '../actions'
+import { signIn, signUp } from '../actions'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
@@ -24,16 +24,15 @@ function SignIn() {
    const errorMessage = useSelector(state => state.errorMessage)
 
    const [formData, setFormData] = useState(initialState)
-   
+
    const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value })
    };
 
    const handleSubmit = async e => {
       e.preventDefault()
-      // console.log(formData)
-      if (isSignUp) {  
-         dispatch(signUp(formData, history))   
+      if (isSignUp) {
+         dispatch(signUp(formData, history))
       } else {
          dispatch(signIn(formData, history))
       }
@@ -58,19 +57,18 @@ function SignIn() {
             history.go(0)
          }
       } catch (error) {
-         console.log(error)
+         console.warn(error)
       }
    };
-   
+
 
    const googleFailure = (error) => {
-      console.log(error)
-      console.log("Google Sign In was unsuccesfully, Try Again Later ")
+      console.warn("Google Sign In was unsuccesfully, Try Again Later ")
    };
 
    return (
       <div>
-         
+
          <Container id="login-form" className="margin">
             {errorMessage ? (
                <div className="d-block text-center p-2 mb-3" style={{ color: "#FF0000", backgroundColor: "#FFCCCC", borderRadius: '10px', borderStyle: 'solid', borderWidth: '2px' }}>{errorMessage.message}</div>
@@ -83,29 +81,29 @@ function SignIn() {
                      <Row>
                         <Col>
                            <div>First Name</div>
-                           <Form.Control name='firstName' required onChange={handleChange}/>
+                           <Form.Control name='firstName' required onChange={handleChange} />
                         </Col>
                         <Col>
                            <div>Last Name</div>
-                           <Form.Control name='lastName' required onChange={handleChange}/>
+                           <Form.Control name='lastName' required onChange={handleChange} />
                         </Col>
                      </Row>
-                  </>       
-               ):(
+                  </>
+               ) : (
                   null
                )}
                <Form.Group controlId="formGroupEmail">
                   <div>Email address</div>
-                  <Form.Control name='email' type="email" required onChange={handleChange}/>
+                  <Form.Control name='email' type="email" required onChange={handleChange} />
                </Form.Group>
                <Form.Group controlId="formGroupPassword">
                   <div>Password</div>
-                  <Form.Control name='password' type="password" required onChange={handleChange}/>
+                  <Form.Control name='password' type="password" required onChange={handleChange} />
                </Form.Group>
                {isSignUp ? (
                   <Form.Group controlId="formGroupPassword">
                      <div>Confirm Password</div>
-                     <Form.Control name='confirmPassword' type="password" required onChange={handleChange}/>
+                     <Form.Control name='confirmPassword' type="password" required onChange={handleChange} />
                   </Form.Group>
                ) : (
                   null

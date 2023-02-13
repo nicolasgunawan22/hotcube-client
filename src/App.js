@@ -18,15 +18,14 @@ import Mail from './components/Mail/Mail'
 import MailTemplate from './components/Mail/MailTemplate'
 import "./App.css"
 
- 
-function App() {
 
+function App() {
   return (
     <div>
       <Router>
-      <Navigation/>
+        <Navigation />
         <Switch>
-          <Route path='/' exact><Home/></Route>
+          <Route path='/' exact><Home /></Route>
           <Route path='/about' component={About} ></Route>
           <Route path='/signin' component={SignIn} ></Route>
           <Route path='/checkout' component={Checkout} ></Route>

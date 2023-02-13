@@ -16,7 +16,7 @@ import sendMail from './Mail/sendMail'
 function Checkout() {
    const dispatch = useDispatch()
    const location = useLocation()
-   
+
    const cart = useSelector((state) => state.cart)
    const users = useSelector((state) => state.users)
    const orderForReceipt = useSelector((state) => state.orderForReceipt)
@@ -34,13 +34,13 @@ function Checkout() {
    const [isPaid, setIsPaid] = useState(false)
    const [message, setMessage] = useState('')
    const [show, setShow] = useState(false);
-   
+
    const profile = JSON.parse(localStorage.getItem('profile'));
    const userEmail = profile?.result.email;
 
    var balance;
    users.forEach(function (item, index) {
-      if (item.email === userEmail){
+      if (item.email === userEmail) {
          balance = item.balance
       }
    });
@@ -50,7 +50,7 @@ function Checkout() {
 
    const handleClose = () => setShow(false);
    const handleShow = () => {
-      if(cart){
+      if (cart) {
          setShow(true)
       }
    };
@@ -82,19 +82,18 @@ function Checkout() {
       var total = calculateTotal(cart)
       users.forEach(function (user, index) {
          if (user.email === userEmail) {
-            if (user.balance >= total){
+            if (user.balance >= total) {
                dispatch(updateUser(user._id, { ...user, balance: user.balance - total }))
                dispatch(ordering(user.cart))
-               
+
                let { createdAt, balance, password, _id, ...y } = user;
 
                var today = new Date();
                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                var dateTime = date + ' ' + time;
-               console.log(dateTime)
-               dispatch(postOrder({ ...y, status: "Order Received", paymentDate: dateTime.toString()}))
-               
+               dispatch(postOrder({ ...y, status: "Order Received", paymentDate: dateTime.toString() }))
+
                const cart = user.cart
                cart.forEach(function (item, index) {
                   const _id = item._id
@@ -121,7 +120,7 @@ function Checkout() {
             dispatch(updateUser(item._id, { ...item, balance: item.balance + parseInt(amount) }))
          }
       });
-      
+
    }
 
    const handleChange = (e) => {
@@ -143,9 +142,9 @@ function Checkout() {
       currency: 'IDR',
    });
 
-   
 
-   return(
+
+   return (
       <div>
          <Container>
             <Row className='my-3'>
@@ -166,11 +165,11 @@ function Checkout() {
                            <h5 className='text-right font-weight-bold'>Total: {formatter.format(calculateTotal(cart))}</h5>
                         </div>
                      </>
-                  ):(
+                  ) : (
                      null
-                  )}    
+                  )}
                </Col>
-               
+
                <Col className='order-1 order-lg-2' md={12} lg={6}>
                   <div>
                      <h4>Your Balance</h4>
@@ -197,9 +196,9 @@ function Checkout() {
                      <div>{message}</div>
                      {isPaid ? (
                         <Button onClick={() => GeneratePDF(orderForReceipt, userEmail)}>Receipt</Button>
-                     ):(
+                     ) : (
                         null
-                     )} 
+                     )}
                   </div>
                   <p className="mt-5">Please go to <i className="bi bi-layout-text-sidebar-reverse"></i>, to check the order status.</p>
                   <p>When the order is ready, you can click "Scan Barcode" to open the cube by scanning the barcode on it.</p>

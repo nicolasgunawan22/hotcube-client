@@ -25,7 +25,7 @@ function CustomerQueue() {
                         </tr>
                      </thead>
                      <tbody>
-                        {order.map(ord => (ord.status == "Order Received" ? (
+                        {order.map(ord => (ord.status === "Order Received" ? (
                            <tr key={ord._id} style={{ backgroundColor: '#F5E9CE', color: "#cd950c" }}>
                               <td>{ord._id.substr(ord._id.length - 3).toUpperCase()}</td>
                            </tr>
@@ -35,7 +35,7 @@ function CustomerQueue() {
                      </tbody>
                   </Table>
                </div>
-               
+
                <div className='mx-2 w-50'>
                   <Table hover responsive>
                      <thead>
@@ -45,7 +45,7 @@ function CustomerQueue() {
                         </tr>
                      </thead>
                      <tbody>
-                        {order.map(ord => (ord.status == "Order Ready" ? (
+                        {order.map(ord => (ord.status === "Order Ready" ? (
                            <tr key={ord._id} style={{ backgroundColor: '#CCE0CC', color: "#006400" }}>
                               <td>{ord._id.substr(ord._id.length - 3).toUpperCase()}</td>
                               <td>{ord.cubeNumber ? (ord.cubeNumber) : ("Please wait...")}</td>
@@ -57,7 +57,7 @@ function CustomerQueue() {
                   </Table>
                </div>
             </div>
-            
+
          </Container>
       </div>
    )

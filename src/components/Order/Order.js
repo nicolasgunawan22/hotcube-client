@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { getOrders } from '../../actions'
 import OrderCard from './OrderCard'
 import { updateOrder } from "../../actions";
@@ -9,12 +9,11 @@ function Order() {
    const order = useSelector((state) => state.order).reverse()
    const dispatch = useDispatch()
    const [isLoading, setIsLoading] = useState(true)
-   console.log(order)
 
-   useEffect(()=> {
+   useEffect(() => {
       dispatch(getOrders())
       setIsLoading(false)
-   },[dispatch])
+   }, [dispatch])
 
    const handleFinishingOrder = (_id) => {
       order.map(item => {
@@ -32,7 +31,7 @@ function Order() {
          <h5>Your Order Status:</h5>
          {
             order.map(ord => (
-               <OrderCard 
+               <OrderCard
                   key={ord._id}
                   _id={ord._id}
                   email={ord.email}
@@ -46,7 +45,7 @@ function Order() {
                />
             ))
          }
-         
+
       </div>
    )
 }

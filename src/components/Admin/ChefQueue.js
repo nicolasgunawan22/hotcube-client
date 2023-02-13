@@ -18,23 +18,19 @@ function ChefQueue() {
    const esp = []
    const lastEspData = []
 
-   for(var i=0; i<2; i++){
-      esp[i] = espData.filter(data => data.cubeId == (i+1).toString())
+   for (var i = 0; i < 2; i++) {
+      esp[i] = espData.filter(data => data.cubeId === (i + 1).toString())
       lastEspData[i] = esp[i][esp[i].length - 1]
    }
 
    const handleOrderReady = (_id) => {
       order.map(item => {
-         if(item._id === _id){
-            dispatch(updateOrder(item._id, { ...item, status: "Order Ready"}))
-            if(lastEspData[0].status == 'empty'){
-               console.log("Foods are going to cube 1")
+         if (item._id === _id) {
+            dispatch(updateOrder(item._id, { ...item, status: "Order Ready" }))
+            if (lastEspData[0].status === 'empty') {
                setToCubeOne(_id)
-            } else if (lastEspData[1].status == 'empty'){
-               console.log("Foods are going to cube 2")
+            } else if (lastEspData[1].status === 'empty') {
                setToCubeTwo(_id)
-            } else {
-               console.log("All cube is filled.")
             }
          } else {
             dispatch(updateOrder(item._id, { ...item }))
@@ -43,12 +39,10 @@ function ChefQueue() {
    }
 
    const setToCubeOne = (_id) => {
-      // console.log("Assigning to Cube 1")
-      order.map(item => {
+      order.forEach(item => {
 
          if (item._id === _id) {
             dispatch(updateOrder(item._id, { ...item, status: "Order Ready", cubeNumber: '1' }))
-            // console.log(item)
          } else {
             dispatch(updateOrder(item._id, { ...item }))
          }
@@ -56,7 +50,7 @@ function ChefQueue() {
    }
 
    const setToCubeTwo = (_id) => {
-      order.map(item => {
+      order.forEach(item => {
          if (item._id === _id) {
             dispatch(updateOrder(item._id, { ...item, status: "Order Ready", cubeNumber: '2' }))
          } else {
@@ -82,7 +76,7 @@ function ChefQueue() {
                   </tr>
                </thead>
                <tbody>
-                  {order.map(ord => (ord.status != "Order Finished" ? (
+                  {order.map(ord => (ord.status !== "Order Finished" ? (
                      <tr key={ord._id}>
                         <td>{ord._id.substr(ord._id.length - 3).toUpperCase()}</td>
                         <td>{ord.paymentDate}</td>
@@ -103,18 +97,13 @@ function ChefQueue() {
                                  </div>
                               </td>
                            </>
-
                         ) : (
                            <td>
 
                            </td>
                         )}
-
                      </tr>
-                  ) : (
-                     null
-                  )
-                     
+                  ) : null
                   ))}
                </tbody>
             </Table>

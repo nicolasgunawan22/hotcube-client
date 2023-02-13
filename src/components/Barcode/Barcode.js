@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import BarcodeScannerComponent from "react-webcam-barcode-scanner";
+// import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import { useHistory } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import { getOrders, getEspData, postEspData } from '../../actions'
 import Modal from 'react-bootstrap/Modal'
 
-function Barcode({cubeNumber}) {
+function Barcode({ cubeNumber }) {
    const history = useHistory()
    const order = useSelector((state) => state.order)
    const espData = useSelector(state => state.espData)
    const dispatch = useDispatch()
 
-   useEffect(() => { 
+   useEffect(() => {
       dispatch(getOrders())
       dispatch(getEspData())
    }, [history, dispatch, order])
@@ -33,9 +33,6 @@ function Barcode({cubeNumber}) {
       },
    ]
 
-   const profile = JSON.parse(localStorage.getItem('profile'));
-   const userEmail = profile?.result.email;
-
    const [data, setData] = useState('Not Found');
    const [text, setText] = useState('');
    const [canRun, setCanRun] = useState(true);
@@ -44,40 +41,37 @@ function Barcode({cubeNumber}) {
    const handleShow = () => setShow(true);
 
    const handleBarcode = (err, result) => {
-      if(result){
+      if (result) {
          setData(result.text)
-         for(var i=0; i<cube.length; i++){
-            if (result.text === cube[i].code){
+         for (var i = 0; i < cube.length; i++) {
+            if (result.text === cube[i].code) {
                setText(`You are scanning barcode on the cube ${cube[i].id}`)
             }
          }
 
-         if(data === cube[cubeNumber-1].code && canRun){
+         if (data === cube[cubeNumber - 1].code && canRun) {
             setCanRun(false)
             handleShow()
          }
-         else{
-            console.log("Wrong Cube")
-         }
       }
-      else{
+      else {
          setText('None')
       }
    }
 
    const handleSend = () => {
-      dispatch(postEspData({ status: espData[espData.length - 1].status, cubeId: cubeNumber, command: "open"}))
+      dispatch(postEspData({ status: espData[espData.length - 1].status, cubeId: cubeNumber, command: "open" }))
       handleClose()
    }
 
    return (
       <div>
          <Container className='d-flex flex-column align-items-center'>
-            <BarcodeScannerComponent
+            {/* <BarcodeScannerComponent
                width={250}
                height={250}
                onUpdate={handleBarcode}
-            />
+            /> */}
             <p>{text}</p>
             <p>{cubeNumber}</p>
             {/* <Button onClick={() => setNum(0)}>1</Button>
